@@ -1,0 +1,87 @@
+{{extend './common/layout.art'}}
+{{block 'title'}}<title>文章编辑</title>{{/block}}
+{{block 'main'}}
+    {{include './common/header.art'}}
+    <!-- 主体内容 -->
+    <div class="content">
+        {{include './common/aside.art'}}
+        <!-- 侧边栏 -->
+        <div class="main">
+            <!-- 分类标题 -->
+            <div class="title">
+                <h4>5b9a716cb2d2bf17706bcc0a</h4>
+            </div>
+            <!-- /分类标题 -->
+            <!--enctype 指定表单数据的编码格式
+                默认：application/x-www-form-urlencoded
+                    name=zhangsang&age=20
+                mulipart/form-data  将表单数据编码成二进制类型
+            -->
+            <form class="form-container" method="post" action="{{link}}" enctype="multipart/form-data" name="aForm">
+                <div class="form-group">
+                    <label>标题</label>
+                    <input type="text" class="form-control" placeholder="请输入文章标题" name="title" value="{{article&&article.title}}">
+                </div>
+                <!--谁登陆了博客系统谁就是作者-->
+                <div class="form-group">
+                    <label>作者</label>
+                    <input type="text" class="form-control" readonly name="author" value="{{@userInfo && userInfo._id}}">
+                </div>
+                <div class="form-group">
+                    <label>发布时间</label>
+                    <input type="date" class="form-control" name="publishDate" value="{{article&&dateformat(article.publishDate,'yyyy-mm-dd')}}">
+                </div>
+                
+                <div class="form-group">
+                    <label for="exampleInputFile">文章封面</label>
+                    <!--mutiple 属性可以选择多个文件-->
+                    <input type="file" name="cover" id="file" value="{{article&&article.cover}}">
+                    <div class="thumbnail-waper">
+                        <img class="img-thumbnail" src="{{article&&article.cover}}" id="preview">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>内容</label>
+                    <textarea class="form-control" id="editor" name="content">{{article&&article.content}}</textarea>
+                </div>
+                <div class="buttons">
+                    <input type="submit" class="btn btn-primary" value="{{button}}">
+                </div>
+            </form>
+            
+        </div>
+    </div>
+    <!-- /主体内容 -->
+{{/block}}
+
+{{block 'js'}}
+    <script src="/admin/lib/ckeditor5/ckeditor.js"></script>
+    <script type="text/javascript">
+        let editor;
+        ClassicEditor
+                .create( document.querySelector('#editor'))
+                .then(newEditor => {
+                    editor = newEditor;
+                })
+                .catch( error => {
+                    console.error( error );
+                });
+
+        // 获取数据
+        // const editorData = editor.getData();
+
+        // 文件读取 
+        // onchage 当用户选择完文件后
+        $("#file").change(function(){
+            // 创建文件读取对象
+            var reader = new FileReader();
+            // 用户选择的文件列表 this.files
+            reader.readAsDataURL(this.files[0]);
+            // readAsDataURL 异步api  无法直接获取结果 通过监听onload 事件 来获取结果
+            reader.onload = function(){
+                // 将文件读取结果显示在页面
+                $("#preview").attr('src',reader.result);
+            }
+        })
+    </script>
+{{/block}}

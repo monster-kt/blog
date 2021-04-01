@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    {{block 'title'}}{{/block}}
+        <!--模板中的路径相对于地址栏中的请求路径 /admin
+        这里能访问是因为我们的请求路径和我们服务端文件存储路径相同
+        所以最好使用绝对路径
+    -->
+    <link rel="stylesheet" href="/admin/lib/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/admin/css/base.css">
+    {{block 'link'}}{{/block}}
+</head>
+
+<body>
+    {{block 'main'}}{{/block}}
+
+    <script src="/admin/lib/jquery/dist/jquery.min.js"></script>
+    <script src="/admin/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/admin/js/common.js"></script>
+    {{block 'js'}}{{/block}}
+</body>
+
+</html>
