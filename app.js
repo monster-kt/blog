@@ -4,7 +4,7 @@
  * @Autor: ksr
  * @Date: 2021-03-22 13:24:48
  * @LastEditors: surui
- * @LastEditTime: 2021-04-01 19:55:46
+ * @LastEditTime: 2021-04-11 20:05:12
  * @FilePath: \VSwork\Node\blog\app.js
 */
 // 引入express框架
@@ -25,7 +25,6 @@ const morgan = require('morgan');
 
 // 引入数据库模块
 require('./model/connect');
-// 导入的时候会同时执行文件
 
 // 创建网站服务器
 const app = express();

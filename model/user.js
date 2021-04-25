@@ -1,8 +1,8 @@
 /*
  * @Date: 2021-03-22 15:26:24
- * @LastEditors: ksr
- * @LastEditTime: 2021-03-26 10:58:09
- * @FilePath: \Node\blog\model\user.js
+ * @LastEditors: surui
+ * @LastEditTime: 2021-04-12 15:52:23
+ * @FilePath: \VSwork\Node\blog\model\user.js
  * @Descripttion:创建用户集合
  * @version:1.0
  * @Author: surui
